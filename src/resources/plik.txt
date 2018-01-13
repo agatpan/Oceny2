@@ -1,0 +1,3 @@
+Jan, Kowalski, 1, 2, 3
+Ania, Kowalska, 2, 5, 3
+Kasia, Nowak, 4, 3,1
