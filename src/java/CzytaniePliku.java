@@ -2,12 +2,11 @@
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class CzytaniePliku {
 
-    void odczytajPlik() throws IOException {
+    TreeSet<Uczen> odczytajPlik() throws IOException {
 
         ClassLoader classLoader = this.getClass().getClassLoader();
         String filePath = classLoader.getResource("plik.txt").getFile();
@@ -21,6 +20,7 @@ public class CzytaniePliku {
         List<String> linie = Files.readAllLines(plik.toPath());
 
         List<Uczen> uczniowie = new ArrayList<>();
+        Map<Integer, Uczen> uczniowieJakoMapa = new HashMap<>();
         int numer = 1;
 
         for (String l : linie) {
@@ -29,7 +29,7 @@ public class CzytaniePliku {
             String[] liniaPodzielona = l.split(",");
             String imie = liniaPodzielona[0];
             String nazwisko = liniaPodzielona[1];
-            String o= liniaPodzielona[2];
+            String o = liniaPodzielona[2];
 
 
             Uczen uczen = new Uczen();
@@ -40,7 +40,7 @@ public class CzytaniePliku {
             String stringOceny = liniaPodzielona[2].trim();
 
             String[] oceny = stringOceny.split(",");
-            for (String ocena : oceny){
+            for (String ocena : oceny) {
                 int ocenaJakoInt = Integer.parseInt(ocena);
                 uczen.getOceny().add(ocenaJakoInt);
             }
@@ -50,10 +50,29 @@ public class CzytaniePliku {
             uczen.getOceny()[2] = Integer.parseInt(liniaPodzielona[4].trim());*/
 
             uczniowie.add(uczen);
+            uczniowieJakoMapa.put(numer, uczen);
             numer++;
         }
 
-        System.out.println(uczniowie);
+        Uczen uczenZListy = uczniowie.get(0);
+
+        Uczen uczenZMapy = uczniowieJakoMapa.get(1);
+
+        TreeSet<Uczen> uczenWgImienia = new TreeSet<>(uczniowie);
+
+        
+
+
+
+
+
+
+        System.out.println(uczenZListy);
+        System.out.println(uczenZMapy);
+
+
+        System.out.println("nieposortowani : " + uczniowie);
+        System.out.println("posortowani : " + uczenWgImienia);
 
     }
 }

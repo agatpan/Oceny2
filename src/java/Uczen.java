@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Uczen {
+public class Uczen implements Comparable {
 
 
     private int numerUcznia;
@@ -82,5 +82,13 @@ public class Uczen {
 
     public List<Integer> getOceny() {
         return oceny;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Uczen uczen = (Uczen) o;
+
+        int wynikPorownania = imie.compareTo(uczen.getImie());
+        return 0;
     }
 }
